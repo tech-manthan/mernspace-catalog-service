@@ -1,0 +1,74 @@
+import mongoose, { model, Schema } from "mongoose";
+import {
+  Category,
+  PriceConfiguration,
+  PriceConfigurationValue,
+  PriceType,
+  WidgetType,
+} from "./category-types";
+
+const priceConfigurationValueSchema = new Schema<PriceConfigurationValue>(
+  {
+    priceType: {
+      type: String,
+      enum: Object.values(PriceType),
+      required: true,
+    },
+    availableOptions: {
+      type: [String],
+      required: true,
+    },
+  },
+  {
+    _id: false,
+  },
+);
+
+const priceConfigurationSchema = new Schema<PriceConfiguration>(
+  {
+    type: Map,
+    of: priceConfigurationValueSchema,
+  },
+  {
+    _id: false,
+  },
+);
+
+const attributeSchema = new Schema(
+  {
+    name: { type: String, required: true },
+    widgetType: {
+      type: String,
+      enum: Object.values(WidgetType),
+      required: true,
+    },
+    defaultValue: { type: mongoose.Schema.Types.Mixed, required: true },
+    availableOptions: { type: [String], required: true },
+  },
+  {
+    _id: false,
+  },
+);
+
+const categorySchmea = new Schema<Category>(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    priceConfiguration: {
+      type: Map,
+      of: priceConfigurationSchema,
+      required: true,
+    },
+    attributes: {
+      type: [attributeSchema],
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  },
+);
+
+export const CategoryModel = model<Category>("Category", categorySchmea);
