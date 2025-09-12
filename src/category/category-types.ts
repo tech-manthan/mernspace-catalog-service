@@ -1,3 +1,7 @@
+// Model Types
+
+import { Request } from "express";
+
 export enum PriceType {
   base = "base",
   additional = "additional",
@@ -18,7 +22,7 @@ export interface PriceConfiguration {
 export interface Attribute {
   name: string;
   widgetType: WidgetType;
-  defaultValue: unknown;
+  defaultValue: string;
   availableOptions: string[];
 }
 
@@ -26,4 +30,16 @@ export interface Category {
   name: string;
   priceConfiguration: PriceConfiguration;
   attributes: Attribute[];
+}
+
+// Category Request Types
+
+export interface CreateCategoryData {
+  name: string;
+  priceConfiguration: PriceConfiguration;
+  attributes: Attribute[];
+}
+
+export interface CreateCategoryRequest extends Request {
+  body: CreateCategoryData;
 }

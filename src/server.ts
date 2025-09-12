@@ -1,7 +1,7 @@
 import config from "config";
 import app from "./app";
-import logger from "./utils/logger";
-import { initDb } from "./utils/db";
+import logger from "./common/utils/logger";
+import { initDb } from "./common/utils/db";
 
 const startServer = async () => {
   try {

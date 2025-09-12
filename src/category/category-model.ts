@@ -1,13 +1,12 @@
 import mongoose, { model, Schema } from "mongoose";
 import {
   Category,
-  PriceConfiguration,
   PriceConfigurationValue,
   PriceType,
   WidgetType,
 } from "./category-types";
 
-const priceConfigurationValueSchema = new Schema<PriceConfigurationValue>(
+const priceConfigurationSchema = new Schema<PriceConfigurationValue>(
   {
     priceType: {
       type: String,
@@ -18,16 +17,6 @@ const priceConfigurationValueSchema = new Schema<PriceConfigurationValue>(
       type: [String],
       required: true,
     },
-  },
-  {
-    _id: false,
-  },
-);
-
-const priceConfigurationSchema = new Schema<PriceConfiguration>(
-  {
-    type: Map,
-    of: priceConfigurationValueSchema,
   },
   {
     _id: false,

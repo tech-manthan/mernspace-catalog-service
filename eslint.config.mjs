@@ -30,7 +30,9 @@ export default tseslint.config(
   },
   {
     rules: {
-      // "no-console": "error",
+      "no-console": "error",
+      // "@typescript-eslint/no-misused-promises": "off",
+      "@typescript-eslint/unbound-method": "off",
     },
   },
   eslintConfigPrettier,
