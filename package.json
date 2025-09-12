@@ -1,0 +1,53 @@
+{
+  "name": "catalog-service",
+  "version": "1.0.0",
+  "description": "Catalog Service for MernSpace",
+  "main": "dist/server.js",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nodemon src/server.ts",
+    "build": "tsc -p tsconfig.build.json",
+    "test:watch": "jest --watch --runInBand",
+    "test": "jest --runInBand",
+    "format:check": "npx prettier . --check",
+    "format:fix": "npx prettier . --write",
+    "lint:check": "npx eslint .",
+    "lint:fix": "npx eslint . --fix",
+    "prepare": "husky"
+  },
+  "author": "Manthan Sharma <techmanthansharma@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.33.0",
+    "@types/express": "^5.0.3",
+    "@types/http-errors": "^2.0.5",
+    "@types/jest": "^30.0.0",
+    "@types/node": "^24.2.1",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "husky": "^9.1.7",
+    "jest": "^30.0.5",
+    "lint-staged": "^16.1.5",
+    "nodemon": "^3.1.10",
+    "prettier": "3.6.2",
+    "ts-jest": "^29.4.1",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
+    "typescript-eslint": "^8.39.0"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run format:fix",
+      "npm run lint:fix"
+    ]
+  },
+  "dependencies": {
+    "@types/supertest": "^6.0.3",
+    "cross-env": "^10.0.0",
+    "dotenv": "^17.2.2",
+    "express": "^5.1.0",
+    "http-errors": "^2.0.0",
+    "supertest": "^7.1.4",
+    "uuid": "^11.1.0",
+    "winston": "^3.17.0"
+  }
+}
