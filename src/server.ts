@@ -1,13 +1,15 @@
 import config from "config";
 import app from "./app";
 import logger from "./utils/logger";
+import { initDb } from "./utils/db";
 
-const startServer = () => {
+const startServer = async () => {
   try {
     const PORT = config.get("server.port") || 5502;
 
+    await initDb();
+
     app.listen(PORT, () => {
-      // console.log(`Listening on port ${PORT}`);
       logger.info("Server Listening on port", { port: PORT });
     });
   } catch (err) {
@@ -17,4 +19,4 @@ const startServer = () => {
   }
 };
 
-startServer();
+void startServer();
