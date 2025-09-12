@@ -1,10 +1,10 @@
+import config from "config";
 import app from "./app";
-import { Config } from "./config";
 import logger from "./utils/logger";
 
 const startServer = () => {
   try {
-    const PORT = Config.PORT;
+    const PORT = config.get("server.port") || 5502;
 
     app.listen(PORT, () => {
       // console.log(`Listening on port ${PORT}`);
