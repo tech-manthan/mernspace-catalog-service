@@ -1,7 +1,6 @@
 import mongoose, {
   AggregatePaginateModel,
   AggregatePaginateResult,
-  Model,
 } from "mongoose";
 import {
   Category,
@@ -15,10 +14,8 @@ import { CategoryDocument } from "./category-model";
 export class CategoryService {
   constructor(
     private catgoryRepository: AggregatePaginateModel<Category>,
-    private productRepository: Model<Product>,
-  ) {
-    this.create = this.create.bind(this);
-  }
+    private productRepository: AggregatePaginateModel<Product>,
+  ) {}
 
   async create({ attributes, name, priceConfiguration }: CreateCategoryData) {
     return this.catgoryRepository.create({

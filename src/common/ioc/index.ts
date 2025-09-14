@@ -3,7 +3,7 @@ import {
   CategoryModel,
   CategoryService,
 } from "../../category";
-import { ProductModel } from "../../product/product-model";
+import { ProductModel } from "../../product";
 import logger from "../utils/logger";
 
 export const categoryService = new CategoryService(CategoryModel, ProductModel);

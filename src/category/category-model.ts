@@ -9,12 +9,12 @@ import aggregatePaginate from "mongoose-aggregate-paginate-v2";
 
 import {
   Category,
-  PriceConfigurationValue,
-  PriceType,
-  WidgetType,
+  CategoryAttribute,
+  CategoryPriceConfigurationValue,
 } from "./category-types";
+import { PriceType, WidgetType } from "../common/types";
 
-const priceConfigurationSchema = new Schema<PriceConfigurationValue>(
+const priceConfigurationSchema = new Schema<CategoryPriceConfigurationValue>(
   {
     priceType: {
       type: String,
@@ -31,7 +31,7 @@ const priceConfigurationSchema = new Schema<PriceConfigurationValue>(
   },
 );
 
-const attributeSchema = new Schema(
+const attributeSchema = new Schema<CategoryAttribute>(
   {
     name: { type: String, required: true },
     widgetType: {

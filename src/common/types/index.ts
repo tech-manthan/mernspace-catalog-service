@@ -27,3 +27,12 @@ export interface PaginateQuery {
 export interface IdParams {
   id: mongoose.Types.ObjectId;
 }
+
+export enum PriceType {
+  base = "base",
+  additional = "additional",
+}
+export enum WidgetType {
+  switch = "switch",
+  radio = "radio",
+}

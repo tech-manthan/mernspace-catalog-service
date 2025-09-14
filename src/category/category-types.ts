@@ -1,25 +1,18 @@
 // Model Types
 
 import { Request } from "express";
+import { PriceType, WidgetType } from "../common/types";
 
-export enum PriceType {
-  base = "base",
-  additional = "additional",
-}
-export enum WidgetType {
-  switch = "switch",
-  radio = "radio",
-}
-export interface PriceConfigurationValue {
+export interface CategoryPriceConfigurationValue {
   priceType: PriceType;
   availableOptions: string[];
 }
 
-export interface PriceConfiguration {
-  [key: string]: PriceConfigurationValue;
+export interface CategoryPriceConfiguration {
+  [key: string]: CategoryPriceConfigurationValue;
 }
 
-export interface Attribute {
+export interface CategoryAttribute {
   name: string;
   widgetType: WidgetType;
   defaultValue: string;
@@ -28,22 +21,22 @@ export interface Attribute {
 
 export interface Category {
   name: string;
-  priceConfiguration: PriceConfiguration;
-  attributes: Attribute[];
+  priceConfiguration: CategoryPriceConfiguration;
+  attributes: CategoryAttribute[];
 }
 
 // Category Request Types
 
 export interface CreateCategoryData {
   name: string;
-  priceConfiguration: PriceConfiguration;
-  attributes: Attribute[];
+  priceConfiguration: CategoryPriceConfiguration;
+  attributes: CategoryAttribute[];
 }
 
 export interface UpdateCategoryData {
   name: string | undefined;
-  priceConfiguration: PriceConfiguration | undefined;
-  attributes: Attribute[] | undefined;
+  priceConfiguration: CategoryPriceConfiguration | undefined;
+  attributes: CategoryAttribute[] | undefined;
 }
 
 export interface CreateCategoryRequest extends Request {

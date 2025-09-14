@@ -1,11 +1,10 @@
 import { checkSchema } from "express-validator";
 import {
-  Attribute,
+  CategoryAttribute,
   CreateCategoryData,
-  PriceConfiguration,
-  PriceType,
-  WidgetType,
+  CategoryPriceConfiguration,
 } from "../category-types";
+import { PriceType, WidgetType } from "../../common/types";
 
 export default checkSchema(
   {
@@ -42,7 +41,7 @@ export default checkSchema(
         bail: true,
       },
       custom: {
-        options: (value: PriceConfiguration) => {
+        options: (value: CategoryPriceConfiguration) => {
           if (!value || Object.keys(value).length === 0) {
             throw new Error("priceConfiguration cannot be empty");
           }
@@ -108,7 +107,7 @@ export default checkSchema(
         bail: true,
       },
       custom: {
-        options: (value: Attribute[]) => {
+        options: (value: CategoryAttribute[]) => {
           if (!value || value.length === 0) {
             throw new Error("attributes cannot be empty");
           }
