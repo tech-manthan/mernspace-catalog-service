@@ -40,6 +40,22 @@ export interface CreateCategoryData {
   attributes: Attribute[];
 }
 
+export interface UpdateCategoryData {
+  name: string | undefined;
+  priceConfiguration: PriceConfiguration | undefined;
+  attributes: Attribute[] | undefined;
+}
+
 export interface CreateCategoryRequest extends Request {
   body: CreateCategoryData;
+}
+
+export interface UpdateCategoryRequest extends Request {
+  body: UpdateCategoryData;
+}
+
+export interface CategoryFilter {
+  q: string;
+  currentPage: number;
+  perPage: number;
 }

@@ -1,4 +1,5 @@
 import { Request } from "express";
+import mongoose from "mongoose";
 
 export enum UserRole {
   CUSTOMER = "customer",
@@ -17,3 +18,12 @@ export interface AuthRequest extends Request {
 export type AuthCookie = {
   accessToken: string;
 };
+
+export interface PaginateQuery {
+  page: number;
+  limit: number;
+}
+
+export interface IdParams {
+  id: mongoose.Types.ObjectId;
+}

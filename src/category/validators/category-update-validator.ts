@@ -10,10 +10,7 @@ import {
 export default checkSchema(
   {
     name: {
-      exists: {
-        errorMessage: "Category name is required",
-        bail: true,
-      },
+      optional: true,
       isString: {
         errorMessage: "Category name must be a string",
         bail: true,
@@ -33,18 +30,15 @@ export default checkSchema(
 
     // priceConfiguration validation
     priceConfiguration: {
-      exists: {
-        bail: true,
-        errorMessage: "priceConfiguration is required",
-      },
+      optional: true,
       isObject: {
         errorMessage: "priceConfiguration must be an object",
         bail: true,
       },
       custom: {
         options: (value: PriceConfiguration) => {
-          if (!value || Object.keys(value).length === 0) {
-            throw new Error("priceConfiguration cannot be empty");
+          if (value && Object.keys(value).length === 0) {
+            throw new Error("priceConfiguration cannot be empty if provided");
           }
           return true;
         },
@@ -76,7 +70,7 @@ export default checkSchema(
       },
       custom: {
         options: (value: string[]) => {
-          if (!value || value.length === 0) {
+          if (value && value.length === 0) {
             throw new Error(
               "priceConfiguration availableOptions cannot be empty",
             );
@@ -93,24 +87,22 @@ export default checkSchema(
       },
       trim: true,
       notEmpty: {
-        errorMessage: "Each attribute availableOption should not be empty",
+        errorMessage:
+          "Each priceConfiguration availableOption should not be empty",
       },
     },
 
     // attributes validation
     attributes: {
-      exists: {
-        errorMessage: "attributes are required",
-        bail: true,
-      },
+      optional: true,
       isArray: {
         errorMessage: "attributes must be an array",
         bail: true,
       },
       custom: {
         options: (value: Attribute[]) => {
-          if (!value || value.length === 0) {
-            throw new Error("attributes cannot be empty");
+          if (value && value.length === 0) {
+            throw new Error("attributes cannot be empty if provided");
           }
           return true;
         },
@@ -158,8 +150,10 @@ export default checkSchema(
       },
       custom: {
         options: (value: string[]) => {
-          if (!value || value.length === 0) {
-            throw new Error("attributes availableOptions cannot be empty");
+          if (value && value.length === 0) {
+            throw new Error(
+              "attributes availableOptions cannot be empty if provided",
+            );
           }
 
           if (value.length < 2) {
@@ -167,7 +161,6 @@ export default checkSchema(
               "attributes availableOptions atleast have two options",
             );
           }
-
           return true;
         },
       },
@@ -182,10 +175,6 @@ export default checkSchema(
       },
     },
     "attributes.*.defaultValue": {
-      exists: {
-        errorMessage: "attributes default value is required",
-        bail: true,
-      },
       custom: {
         options: (value: string, { req }) => {
           if (value === null || value === undefined || value === "") {

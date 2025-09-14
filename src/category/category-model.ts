@@ -1,4 +1,12 @@
-import mongoose, { model, Schema } from "mongoose";
+import mongoose, {
+  model,
+  Schema,
+  AggregatePaginateModel,
+  HydratedDocument,
+  InferSchemaType,
+} from "mongoose";
+import aggregatePaginate from "mongoose-aggregate-paginate-v2";
+
 import {
   Category,
   PriceConfigurationValue,
@@ -60,4 +68,12 @@ const categorySchmea = new Schema<Category>(
   },
 );
 
-export const CategoryModel = model<Category>("Category", categorySchmea);
+categorySchmea.plugin(aggregatePaginate);
+export const CategoryModel = model<Category, AggregatePaginateModel<Category>>(
+  "Category",
+  categorySchmea,
+);
+
+export type CategoryDocument = HydratedDocument<
+  InferSchemaType<typeof categorySchmea>
+>;

@@ -1,6 +1,5 @@
-import categoryRouter from "./category/category-router";
-
 import { Router } from "express";
+import { categoryRouter } from "./category";
 
 const router = Router();
 
