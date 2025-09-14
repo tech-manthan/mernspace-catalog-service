@@ -4,12 +4,12 @@ import mongoose, {
 } from "mongoose";
 import {
   Category,
+  CategoryLean,
   CreateCategoryData,
   UpdateCategoryData,
 } from "./category-types";
 import { PaginateQuery } from "../common/types";
 import { Product } from "../product/product-types";
-import { CategoryDocument } from "./category-model";
 
 export class CategoryService {
   constructor(
@@ -57,7 +57,7 @@ export class CategoryService {
   async getCategories(
     q: string,
     paginateQuery: PaginateQuery,
-  ): Promise<AggregatePaginateResult<CategoryDocument>> {
+  ): Promise<AggregatePaginateResult<CategoryLean>> {
     const searchQueryRegexp = new RegExp(q, "i");
 
     const aggregate = this.catgoryRepository.aggregate([
@@ -65,12 +65,9 @@ export class CategoryService {
       { $sort: { createdAt: -1 } },
     ]);
 
-    return this.catgoryRepository.aggregatePaginate<CategoryDocument>(
-      aggregate,
-      {
-        ...paginateQuery,
-      },
-    );
+    return this.catgoryRepository.aggregatePaginate<CategoryLean>(aggregate, {
+      ...paginateQuery,
+    });
   }
 
   async deleteCategory(id: mongoose.Types.ObjectId) {

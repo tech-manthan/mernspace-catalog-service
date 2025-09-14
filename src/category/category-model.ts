@@ -1,10 +1,4 @@
-import mongoose, {
-  model,
-  Schema,
-  AggregatePaginateModel,
-  HydratedDocument,
-  InferSchemaType,
-} from "mongoose";
+import mongoose, { model, Schema, AggregatePaginateModel } from "mongoose";
 import aggregatePaginate from "mongoose-aggregate-paginate-v2";
 
 import {
@@ -73,7 +67,3 @@ export const CategoryModel = model<Category, AggregatePaginateModel<Category>>(
   "Category",
   categorySchmea,
 );
-
-export type CategoryDocument = HydratedDocument<
-  InferSchemaType<typeof categorySchmea>
->;

@@ -196,7 +196,7 @@ export class CategoryController {
       if (err instanceof Error) {
         this.logger.error(err.message);
       }
-      next(createHttpError(500, "failed to get category"));
+      next(createHttpError(500, "failed to delete category"));
     }
   }
 }

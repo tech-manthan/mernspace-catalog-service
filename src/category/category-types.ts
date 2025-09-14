@@ -1,7 +1,7 @@
 // Model Types
 
 import { Request } from "express";
-import { PriceType, WidgetType } from "../common/types";
+import { PriceType, WidgetType, WithId } from "../common/types";
 
 export interface CategoryPriceConfigurationValue {
   priceType: PriceType;
@@ -24,6 +24,8 @@ export interface Category {
   priceConfiguration: CategoryPriceConfiguration;
   attributes: CategoryAttribute[];
 }
+
+export type CategoryLean = WithId<Category>;
 
 // Category Request Types
 
