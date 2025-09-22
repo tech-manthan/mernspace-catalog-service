@@ -12,6 +12,7 @@ export interface AuthRequest extends Request {
     id: number;
     role: UserRole;
     refreshTokenId: number;
+    tenant: string;
   };
 }
 
@@ -36,3 +37,9 @@ export enum WidgetType {
   switch = "switch",
   radio = "radio",
 }
+
+export type WithId<T> = T & {
+  _id: mongoose.Types.ObjectId;
+  createdAt?: Date;
+  updatedAt?: Date;
+};

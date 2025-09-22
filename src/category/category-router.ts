@@ -5,9 +5,16 @@ import canAccess from "../common/middleware/can.access";
 import { UserRole } from "../common/types";
 import idValidator from "../common/validators/id-validator";
 import categoryUpdateValidator from "./validators/category-update-validator";
-import { categoryController } from "../common/ioc";
 import categoryGetAllValidator from "./validators/category-get-all-validator";
+import { CategoryModel } from "./category-model";
+import { ProductModel } from "../product";
+import { CategoryController } from "./category-controller";
+import { CategoryService } from "./category-service";
+import logger from "../common/utils/logger";
 // import { asyncWrapper } from "../common/utils/async-wrapper";
+
+const categoryService = new CategoryService(CategoryModel, ProductModel);
+const categoryController = new CategoryController(categoryService, logger);
 
 const router = Router();
 
