@@ -26,16 +26,21 @@ const priceConfigurationSchema = new Schema<ProductPriceConfigurationValue>(
   },
 );
 
-const attributeSchema = new Schema<ProductAttribute>({
-  name: {
-    type: String,
-    required: true,
+const attributeSchema = new Schema<ProductAttribute>(
+  {
+    name: {
+      type: String,
+      required: true,
+    },
+    value: {
+      type: mongoose.Schema.Types.Mixed,
+      required: true,
+    },
   },
-  value: {
-    type: mongoose.Schema.Types.Mixed,
-    required: true,
+  {
+    _id: false,
   },
-});
+);
 
 const productSchema = new Schema<Product>(
   {

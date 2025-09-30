@@ -10,7 +10,10 @@ const app = express();
 
 app.use(
   cors({
-    origin: [config.get("frontend.dashboard_url")],
+    origin: [
+      config.get("frontend.dashboard_url"),
+      config.get("frontend.client_url"),
+    ],
     credentials: true,
   }),
 );
